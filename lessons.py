@@ -1,9 +1,9 @@
 import datetime
-from config import write_message_null, con, ch_nch_week
+from config import write_message_null, con, ch_nch_week,gr_name_convert
 
 
 def lessons_p(sender, reseived_message):
-    weekly = datetime.datetime.today().strftime("%A")  # ДЕНЬ_НЕДЕЛИ
+    weekly = datetime.datetime.today().strftime("%A")  # ДЕНЬ НЕДЕЛИ
     date = datetime.datetime.today().strftime("%d.%m.%Y")   # ДАТА
     time = datetime.datetime.today().strftime("%H:%M:%S")   # ВРЕМЯ
     check = False   # ПРОВЕРКА НА ПУСТОЙ ДЕНЬ НЕДЕЛИ
@@ -11,7 +11,7 @@ def lessons_p(sender, reseived_message):
     cur = con.cursor()
     cur.execute("SELECT l.lesson, l.week, l.time_p, l.teacher, l.audience, l.type_p FROM lessons as l, grp WHERE"
                 " grp.id_gr = '%s' and grp.id_gr = l.id_gr and l.week = '%s' and "
-                "(l.week_type = '%s' or l.week_type = 'Общая')" % (reseived_message, weekly, ch_nch_week()))
+                "(l.week_type = '%s' or l.week_type = 'Общая')" % (gr_name_convert(reseived_message), weekly, ch_nch_week()))
     rows = cur.fetchall()
     write_message_null(sender, '('+date+')' + "    Сегодня у нас: " + weekly + "\nВремя: " + time+'\n')
     for row in rows:

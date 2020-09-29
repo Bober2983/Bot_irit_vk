@@ -5,7 +5,7 @@ from config import write_message_menu, write_message_timetable, write_message_im
     write_message_return
 from lessons import lessons_p
 
-wait = 0
+wait = 0    # ОЖИДАНИЕ ОТВЕТА ГРУППЫ
 for event in config.longpoll.listen():  # Ожидание сообщения от сервера VK
     if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:  # Проверка отправки сообщения, адресованное боту. Проверка, что сообщение является текстом.
         reseived_message = event.text
@@ -13,7 +13,7 @@ for event in config.longpoll.listen():  # Ожидание сообщения о
         mailer = sender
         gr_check = False
 
-        gr_check = prov(reseived_message)
+        gr_check = prov(reseived_message)   # ПРОВЕРКА ГРУППЫ
         # КНОПКА ПРИВЕТСТВИЯ
         if reseived_message == "Начать":
             write_message_menu(sender, HELLO)

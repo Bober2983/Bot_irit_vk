@@ -8,7 +8,7 @@ from vk_api import VkUpload
 from keyboard import menu, timetable, start, return_
 
 # ДАННЫЕ
-token = "b42b5b0772a7ed33e092aa71106b250c35fee7dd4a14b08d0b2b4e9735f7bd29d20626b87ebe843ea16bd"  # Ключ доступа к группе
+token = "22e4298d1190fcf429861b4c5de8e211c5d82d41189b08081358ed4b492d505a91700de9842829e60e90c"  # Ключ доступа к группе
 image = "C:/NNTU/Diplom/Project/Bot_irit_vk/picture/call.jpg"  # РАСПИСАНИЕ ЗВОНКОВ
 
 # АВТОРИЗАЦИЯ
@@ -72,16 +72,23 @@ def ch_nch_week():
         week_c_n = 'ЧН'
     return week_c_n
 
+# ПРЕОБРАЗОВАНИЕ РЕГИСТРА И ТИРЭ
+def gr_name_convert (reseived_message):
+    temp_message = reseived_message.upper()
+    split = temp_message.split()
+    message = '-'.join(split)
+    return message
 
 # СПИСОК ГРУПП
 def prov(reseived_message):
     command = False
     i = 0
+
     group = ['20-ИВТ-1', '20-ИВТ-2', '20-ИВТ-3', '20-ИСТ-1', '20-ИСТ-2', '20-ИСТ-3', '20-ИСТ-4', '20-ИТС', '20-КТЭС',
-             '20-ПМ-1', '20-ПМ-2', '20-Р', 'С 20-РЭС', '19-ИВТ-1', '19-ИВТ-2', '19-ИВТ-3', '19-ИСТ-1', '19-ИСТ-2',
-             '19-ИСТ-3', '19-ИСТ-4', '19-ИТС', '19-КТЭС', '19-ПМ-1', '19-ПМ-2', '19-Р', 'С 19-РЭС']
+             '20-ПМ-1', '20-ПМ-2', '20-Р', 'С-20-РЭС', '19-ИВТ-1', '19-ИВТ-2', '19-ИВТ-3', '19-ИСТ-1', '19-ИСТ-2',
+             '19-ИСТ-3', '19-ИСТ-4', '19-ИТС', '19-КТЭС', '19-ПМ-1', '19-ПМ-2', '19-Р', 'С-19-РЭС']
     while i < len(group):
-        if group[i] == reseived_message:
+        if group[i] == gr_name_convert(reseived_message):
             command = True
         i = i + 1
     return command
