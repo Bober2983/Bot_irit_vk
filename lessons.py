@@ -1,11 +1,13 @@
 import datetime
+import pytz
 from config import write_message_null, con, ch_nch_week,gr_name_convert
 
 
 def lessons_p(sender, reseived_message):
-    weekly = datetime.datetime.today().strftime("%A")  # ДЕНЬ НЕДЕЛИ
-    date = datetime.datetime.today().strftime("%d.%m.%Y")   # ДАТА
-    time = datetime.datetime.today().strftime("%H:%M:%S")   # ВРЕМЯ
+    tz = pytz.timezone('Europe/Moscow') # ВЫБОР МОСКОВСКОГО ВРЕМЕНИ
+    weekly = datetime.datetime.now(tz).strftime("%A")  # ДЕНЬ НЕДЕЛИ
+    date = datetime.datetime.now(tz).strftime("%d.%m.%Y")   # ДАТА
+    time = datetime.datetime.now(tz).strftime("%H:%M:%S")  # ВРЕМЯ
     check = False   # ПРОВЕРКА НА ПУСТОЙ ДЕНЬ НЕДЕЛИ
 
     cur = con.cursor()

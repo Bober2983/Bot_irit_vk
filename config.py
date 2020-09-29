@@ -52,6 +52,7 @@ def write_message_return(sender, message):
                                       'keyboard': return_.get_keyboard()})
 
 
+
 # СОЕДИНЕНИЕ С БАЗОЙ ДАННЫХ POSTGRESQL
 con = psycopg2.connect(
     database="bot",

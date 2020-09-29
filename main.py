@@ -33,9 +33,19 @@ for event in config.longpoll.listen():  # Ожидание сообщения о
         elif reseived_message == "Расписание звонков":
             write_message_image(sender, " ")
 
+        elif reseived_message == "Расписание сессии":
+            write_message_return(sender, "В данный момент расписание сессии не имеется")
+
         else:
-            if gr_check == False:
-                write_message_menu(sender, "Неверно введена команда или название группы, пожалуйста, повторите попытку")
+            if wait == 1 and gr_check == False:
+                write_message_null(sender, "Неверно введено название группы, пожалуйста, повторите попытку")
+
+            elif gr_check == True and wait == 0:
+                write_message_timetable(sender, 'Для того, чтобы вывести расписание группы, нужно '
+                                           'написать/выбрать команду "Расписание занятий"')
+
+            elif gr_check == False:
+                write_message_menu(sender, "Неверно введена команда, пожалуйста, повторите попытку")
 
         if gr_check == True and sender == mailer and wait == 1:
             lessons_p(sender, reseived_message)

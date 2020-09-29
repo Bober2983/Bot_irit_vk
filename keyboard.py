@@ -9,7 +9,9 @@ start.add_button('Начать', color=VkKeyboardColor.PRIMARY)  # КНОПКА 
 
 timetable = VkKeyboard(one_time=True)
 timetable.add_button('Расписание занятий', color=VkKeyboardColor.PRIMARY)  # КНОПКА "РАСПИСАНИЕ ЗАНЯТИЙ"
+timetable.add_line()
 timetable.add_button('Расписание звонков', color=VkKeyboardColor.PRIMARY)  # КНОПКА "РАСПИСАНИЕ ЗВОНКОВ"
+timetable.add_button('Расписание сессии', color=VkKeyboardColor.PRIMARY)  # КНОПКА "РАСПИСАНИЕ СЕССИИ"
 
 return_ = VkKeyboard(one_time=True)
 return_.add_button('Возврат в меню', color=VkKeyboardColor.NEGATIVE)  # КНОПКА "ОБРАТНО В МЕНЮ"
