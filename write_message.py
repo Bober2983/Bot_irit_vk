@@ -1,4 +1,4 @@
-from keyboard import menu, timetable, start, return_
+from keyboard import menu, timetable, start, return_, class_uni
 from config import login_vk
 from vk_api.utils import get_random_id
 from config import attachments
@@ -31,3 +31,8 @@ def write_message_image(sender, message):
 def write_message_return(sender, message):
     login_vk.method('messages.send', {'user_id': sender, 'message': message, 'random_id': get_random_id(),
                                       'keyboard': return_.get_keyboard()})
+
+
+def write_message_class(sender, message):
+    login_vk.method('messages.send', {'user_id': sender, 'message': message, 'random_id': get_random_id(),
+                                      'keyboard': class_uni.get_keyboard()})

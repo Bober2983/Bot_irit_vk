@@ -1,4 +1,6 @@
 import config
+
+from collections import defaultdict
 from text import HELLO
 from vk_api.longpoll import VkEventType
 from write_message import write_message_menu, write_message_timetable, write_message_image, write_message_null, \
@@ -15,7 +17,6 @@ for event in config.longpoll.listen():  # Ожидание сообщения о
         # адресованное боту. Проверка, что сообщение является текстом.
         reseived_message = event.text
         sender = event.user_id
-        # gr_check = False
         gr_check = gr_availability(reseived_message)  # ПРОВЕРКА ГРУППЫ
 
         # КНОПКА ПРИВЕТСТВИЯ
@@ -27,6 +28,9 @@ for event in config.longpoll.listen():  # Ожидание сообщения о
         # ОСНОВНОЕ МЕНЮ
         elif reseived_message == "Расписание":
             write_message_timetable(sender, "Выбери тип расписания: ")
+        # МЕТОДИЧЕСКОЕ ПОСОБИЕ
+        elif reseived_message == "Методическое пособие":
+            write_message_null(sender, "Введи фамилию преподователя: ")
 
         # РАСПИСАНИЕ
         elif reseived_message == "Расписание занятий":
@@ -55,3 +59,5 @@ for event in config.longpoll.listen():  # Ожидание сообщения о
             lessons(sender, reseived_message)
             write_message_return(sender, "Для возврата в меню нажмите на кнопку")
             wait_gr = 0
+
+        
