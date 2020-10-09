@@ -11,15 +11,15 @@ def multiple_week():
     return week_c_n
 
 
-# КОНВЕРТАЦИЯ ГРУПП В ФОРМАТЕ "FF-FFF" - ГДЕ F - ЗАГЛАВНАЯ БУКВА
-def gr_name_convert(reseived_message):
-    temp_message = reseived_message.upper()
-    split = temp_message.split()
+# КОНВЕРТАЦИЯ КОМАНД В ФОРМАТЕ "FF-FFF" - ГДЕ F - ЗАГЛАВНАЯ БУКВА
+def name_convert(reseived_message):
+    temp = reseived_message.upper()
+    split = temp.split()
     message = '-'.join(split)
     return message
 
 
-# СПИСОК ГРУПП С ЕЁ ПРЕОБРАЗОВАНИЕМ
+# СПИСОК ГРУПП С ИХ ПРЕОБРАЗОВАНИЕМ
 def gr_availability(reseived_message):
     command = False
     i = 0
@@ -29,7 +29,21 @@ def gr_availability(reseived_message):
              '19-ИСТ-3', '19-ИСТ-4', '19-ИТС', '19-КТЭС', '19-ПМ-1', '19-ПМ-2', '19-Р', 'С-19-РЭС']
 
     while i < len(group):
-        if group[i] == gr_name_convert(reseived_message):
+        if group[i] == name_convert(reseived_message):
+            command = True
+        i = i + 1
+    return command
+
+
+# СПИСОК ПРЕПОДОВАТЕЛЕЙ С ИХ ПРЕОБРАЗОВАНИЕМ
+def teacher_availability(reseived_message):
+    command = False
+    i = 0
+
+    teacher = ['ПАНКРАТОВА']
+
+    while i < len(teacher):
+        if teacher[i] == name_convert(reseived_message):
             command = True
         i = i + 1
     return command

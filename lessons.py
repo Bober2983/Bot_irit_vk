@@ -3,7 +3,7 @@ import pytz
 
 from config import connection_db
 from write_message import write_message_null
-from auxiliary_def import multiple_week, gr_name_convert
+from auxiliary_def import multiple_week, name_convert
 
 
 def lessons(sender, reseived_message):
@@ -17,7 +17,7 @@ def lessons(sender, reseived_message):
     cur.execute("SELECT l.lesson, l.week, l.time_p, l.teacher, l.audience, l.type_p FROM lessons as l, grp WHERE"
                 " grp.id_gr = '%s' and grp.id_gr = l.id_gr and l.week = '%s' and "
                 "(l.week_type = '%s' or l.week_type = 'Общая')" % (
-                    gr_name_convert(reseived_message), weekly, multiple_week()))
+                    name_convert(reseived_message), weekly, multiple_week()))
     rows = cur.fetchall()
     write_message_null(sender, '(' + date + ')' + "    Сегодня у нас: " + weekly + "\nВремя: " + time + '\n')
     for row in rows:
