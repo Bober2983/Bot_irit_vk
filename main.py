@@ -89,7 +89,7 @@ for event in config.longpoll.listen():  # Ожидание сообщения о
             write_message_return(sender, "Для возврата в меню нажмите на кнопку")
             wait_gr = 0
 
-        # ФУНКЦИЯ ВЫВОДА МЕТОДИЧЕК
+        # ФУНКЦИЯ ВЫВОДА СПИСКА МЕТОДИЧЕК МЕТОДИЧЕК
         if teacher_check and sender == mailer_met and wait_teacher == 1:
             manual(sender)
-            wait_gr = 0
+            wait_teacher = 0

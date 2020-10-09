@@ -4,12 +4,10 @@ from text import MANUAL
 
 
 def manual(sender):
-    i = 1
     cur = connection_db.cursor()
-    cur.execute("SELECT m.name FROM manual as m, teacher WHERE teacher.id = m.id_teacher ")
+    cur.execute("SELECT m.number, m.name FROM manual as m, teacher WHERE teacher.id = m.id_teacher ")
     rows = cur.fetchall()
-    write_message_null(sender,MANUAL)
+    write_message_null(sender, MANUAL)
     for row in rows:
-        text = str(i) + '. ' + row[0] + '\n'
+        text = row[0] + '. ' + row[1] + '\n'
         write_message_null(sender, text)
-        i = i + 1
